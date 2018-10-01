@@ -1,0 +1,9 @@
+--- #MOUNTING a file system
+- hosts: local
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: Mounting a device
+    mount: name=/mnt/data src=/dev/xvdf1 fstype=ext3 opts=rw state=present

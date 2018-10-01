@@ -1,0 +1,13 @@
+--- #CONDITIONAL Playbook
+- hosts: all
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: Installing HTTPD on RedHat/CenOS systems
+    yum: pkg=httpd state=installed
+    when: ansible_os_family == 'RedHat'
+  - name: Installing APACHE2 on Debian/UBUNTU systems
+    apt: pkg=apache2 state=installed
+    when: ansible_os_family == 'Debian'

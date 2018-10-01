@@ -1,0 +1,19 @@
+--- #AYNCHRONOUS POLLING Playbook
+- hosts: RedHat
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  vars_prompt:
+  - name: package
+    prompt: Enter a package name
+    private: no
+  tasks:
+  - name: Install HTTPD
+    yum: pkg={{ package }} state=installed
+    async: 300
+    poll: 2
+    notify: restart HTTPD
+  handlers:
+  - name: restart HTTPD
+    service: name={{ package }} state=restarted

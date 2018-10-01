@@ -1,0 +1,14 @@
+--- #NEW Instances
+- hosts: stage
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: creating new instances
+    ec2:
+     image:
+     instance_type:
+     count: 2
+     vpc_subnet_id:
+     assign_public_ip:

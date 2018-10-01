@@ -1,0 +1,16 @@
+--- #UNTIL Playbook
+- hosts: RedHat
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: Until use case
+    yum: pkg=httpd state=installed
+  - name: Verify httpd status
+    shell: systemctl status httpd
+    register: log
+    until: log.stdout.find("active (running)") != -1
+    retries: 5
+    delay: 5
+  - debug: var=log

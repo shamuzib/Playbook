@@ -1,0 +1,11 @@
+--- #EC2 Instance details
+- hosts: all
+  user: test
+  become: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: EC2 facts
+    action: ec2_facts
+  - name: Display instance type
+    debug: msg='{{ ansible_ec2_instance_id }}'

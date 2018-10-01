@@ -1,0 +1,13 @@
+--- #CONDOTIONAL PLaybook
+- hosts: all
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: Installing httpd on RedHat systems
+    yum: pkg=httpd state=installed
+    when: ansible_os_family=='RedHat'
+  - name: Installing apache on Debian Systems
+    apt: pkg=apache2 state=installed
+    when: ansible_os_family=='Debian'

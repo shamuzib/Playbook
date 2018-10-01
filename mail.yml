@@ -1,0 +1,13 @@
+--- #MAIL Module
+- hosts: all
+  remote_user: test
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: Sending email to all remote systems
+    mail:
+     host: 'localhost'
+     port: 25
+     to: "test"
+     subject: 'deployment is completed'
+     body: system {{ ansible_hostname }}

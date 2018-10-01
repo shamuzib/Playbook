@@ -1,0 +1,11 @@
+--- #EC2 INSTANCE FACTS
+- hosts: stage
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: gather ec2 instance facts using ec2facts
+    action: ec2_facts
+    register: log
+  - debug: var=log

@@ -1,0 +1,4 @@
+- name: INstall httpd
+  yum: pkg=httpd state=installed
+- name: Install lynx
+  yum: pkg=lynx state=installed

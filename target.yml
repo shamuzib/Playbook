@@ -1,0 +1,6 @@
+--- #TARGET Section
+- hosts: RedHat:production:stage
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: yes

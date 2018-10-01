@@ -1,0 +1,9 @@
+--- #MYSQL_USER
+- hosts: all
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: MYSQL User module
+    mysql_user: name=bob password=pass123 priv=db.table:ALL

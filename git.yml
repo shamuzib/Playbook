@@ -1,0 +1,9 @@
+--- #GIT MODULE
+- hosts: Debian
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: GIT MODULE
+    git: repo=ssh:    dest=

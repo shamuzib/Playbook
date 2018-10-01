@@ -1,0 +1,25 @@
+--- #OUTLINING Playbook
+- hosts: RedHat
+  user: test
+  sudo: yes
+  connection: ssh
+  tasks:
+  - name: Starting time of Playbook
+    command: /usr/bin/date
+    register: start
+  - debug: var=start
+  - name: Install httpd
+    yum: pkg=httpd action=installed
+    notify: restart httpd
+  handlers:
+  - name: restart httpd
+    service: name=httpd state=restarted
+  tasks:
+  - name: Install lynx
+    yum: pkg=lynx state=installed
+  - name: verify isnatlled status
+    command: yum list installed | grep lynx
+    register: lynx
+  - debug: var=lynx
+  - name: Ending time of Playbook
+    raw: /usr/bin/date > /home/test/end.log

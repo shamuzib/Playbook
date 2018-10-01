@@ -1,0 +1,17 @@
+--- #HANDLERS Playbook
+- hosts: RedHat
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  vars_prompt:
+  - name: package
+    prompt: Enter a package you want to install
+    private: no
+  tasks:
+  - name: Install & start httpd using handlers
+    yum: pkg={{ package }} state=installed
+    notify: restart HTTPD
+  handlers:
+  - name: restart HTTPD
+    service: name={{ package }} state=restarted

@@ -1,0 +1,9 @@
+--- #SEBOOL Playbook
+- hosts: RedHat
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: setting httpd_anon_write value to yes
+    seboolean: name=httpd_anon_write state=no persistent=yes

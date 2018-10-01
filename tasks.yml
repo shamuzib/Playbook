@@ -1,0 +1,21 @@
+--- #TASKS Playbook
+- hosts: RedHat
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: nos
+  vars:
+   author_name: Namico
+   blah_blah: la la land
+   playook_version: 0.1c
+   copyright: Namico.Inc@2018
+  vars_files:
+  - conf/webdefaults.yml
+  - conf/copyright.yml
+  vars_prompt:
+  - name: package
+    prompt: enter_a_package_to_install
+    private: no
+  tasks:
+  - name: Package installation
+    action: yum pkg={{ package }}  state=installed

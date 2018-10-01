@@ -1,0 +1,11 @@
+--- #Playbook for RAW
+- hosts: all
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: RAW module
+    raw: ls -al /home/test > /home/test/raw.log
+    register: nam
+  - debug: var=nam

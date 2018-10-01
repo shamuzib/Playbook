@@ -1,0 +1,10 @@
+--- #INCLUDE Playbook
+- hosts: RedHat
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - include: play/include.yml
+  - name: Verify install status
+    raw: yum list installed | grep lynx >> /home/test/lynx.log

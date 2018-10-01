@@ -1,0 +1,12 @@
+--- #EC2 KEY generate
+- hosts: stage
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: creating security creds for ec2
+    ec2_key:
+     name: mykeypairTESTaws
+     region: us-west-2
+     state: present

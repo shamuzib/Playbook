@@ -1,0 +1,9 @@
+--- #GROUPS MODULE
+- hosts: all
+  become: yes
+  remote_user: test
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: creating groups using group module
+    group: name=newgroup state=absent system=yes

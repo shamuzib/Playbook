@@ -1,0 +1,19 @@
+--- #This is playbook exapmle for vars
+- hosts: all
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  vars:
+   playbook_version: 1.0
+   control_server: namico1
+   wrb_root: /var/www/html
+  vars_files:
+  - /home/test/Playbooks/conf/webdefaults.yml
+  - /home/test/Playbooks/conf/copyright.yml
+  vars_prompt:
+  - name: web root
+    prompt: Give me a name
+  tasks:
+  - name: Vars example file
+    ping:

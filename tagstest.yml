@@ -1,0 +1,19 @@
+--- #Tags verification:
+- hosts: RedHat
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: install httpd
+    yum: pkg=httpd state=installed
+    tags:
+    - httpd
+  - name: install lynx
+    yum: pkg=lynx state=installed
+    tags:
+    - lynx
+  - name: raw commands
+    raw: /bin/uptime
+    tags:
+    - uptime

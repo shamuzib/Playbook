@@ -1,0 +1,7 @@
+--- #LOOKUP Example
+- hosts: all
+  user: test
+  sudo: yes
+  connection: ssh
+  tasks:
+  - debug: msg="BatMan Name is {{ lookup ('csvfile','Batman file=lookup.csv delimiter=, default=NoMatch')}}"

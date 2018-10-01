@@ -1,0 +1,12 @@
+--- #RUNONCE Playbook
+- hosts: RedHat
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: RunOnce Playbook using Uptime command
+    raw: /bin/uptime >> /home/test/uptime.log
+  - name: list var directory
+    raw: ls -al /var >> /home/test/direc.log
+    run_once: true

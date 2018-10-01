@@ -1,0 +1,18 @@
+--- #NOTIFY Playbook
+- hosts: all
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: Install HTTPD
+    yum: pkg=httpd state=installed
+    when: ansible_os_family == 'RedHat'
+    notify: restart HTTPD
+  - name: Install apache
+    apt: pkg=apache2 state=installed
+    when: ansible_os_family == 'Debian'
+  handlers: 
+  - name: restart HTTPD
+    service: name=httpd state=restarted
+    when: ansible_os_family == 'RedHat'

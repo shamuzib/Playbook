@@ -1,0 +1,14 @@
+--- #PROMPT Playbook
+- hosts: all
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  vars_prompt:
+  - name: package
+    prompt: Enter package you want to install
+    default: lynx
+    private: no
+  tasks:
+  - name: Install packages interactively
+    yum: pkg={{ package }} state=installed

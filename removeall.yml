@@ -1,0 +1,27 @@
+--- # REMOVING HTTPD FROM REDHAT SYSTEMS
+
+- hosts: RedHat
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: Removing HTTPD from RedHat Systems
+    action: yum pkg=httpd state=removed
+  - name: Removing LYNX from REDHAT
+    action: yum pkg=lynx state=removed
+  - name: Removing telnet from RedHat
+    action: yum pkg=telnet state=removed
+
+- hosts: Debian
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: Removing Apache from Debain Systems
+    action: apt pkg=apache2 state=removed
+  - name: Removing LYNX from Debian
+    action: apt pkg=lynx state=removed
+  - name: Removing telnet from Debian
+    action: apt pkg=telnet state=removed

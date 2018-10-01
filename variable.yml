@@ -1,0 +1,15 @@
+--- #VARIABLE Playbook
+- hosts: RedHat:production:stage
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  vars:
+   author_name: Namico
+   playbook_version: 0.1b
+  vars_prompt:
+  - name: Playbook Name
+    prompt: enter your name
+  tasks:
+  - name: removing httpd
+    action: yum state=removed pkg=httpd

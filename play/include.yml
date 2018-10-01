@@ -1,0 +1,3 @@
+- name: Installing lynx
+  yum: pkg=lynx state=installed
+

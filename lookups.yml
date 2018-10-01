@@ -1,0 +1,8 @@
+--- #LOOKUPS Playook
+- hosts: all
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - debug: msg="Looking for SuperHero Superman {{ lookup ('csvfile','WonderWoman file=lookup.csv delimiter=, default=NOMATCH')}}"

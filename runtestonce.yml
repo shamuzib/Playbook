@@ -1,0 +1,13 @@
+--- #RUN_ONCE Module
+- hosts: all
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: run_once example
+    raw: ls -al /home/test/
+    register: list
+  - debug: var=list
+    run_once: true
+

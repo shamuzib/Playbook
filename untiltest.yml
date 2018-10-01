@@ -1,0 +1,19 @@
+--- #UNTIL Playbook
+- hosts: RedHat
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: Install HTTPD and use case of until
+    yum: pkg=httpd state=installed
+  - name: Verify connection status
+    shell: systemctl status httpd
+    register: result
+
+    ignore_errors: true
+    retries: 5
+    delay: 5
+
+    until: result.find("active (running)") != -1
+  - debug: var=result

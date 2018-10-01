@@ -1,0 +1,10 @@
+--- #This is most basic playbook
+
+- hosts: all
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: pinging all servers
+    ping:
